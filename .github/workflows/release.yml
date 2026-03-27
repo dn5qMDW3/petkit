@@ -1,0 +1,46 @@
+name: "Release"
+
+on:
+  release:
+    types:
+      - "published"
+      - "prereleased"
+
+env:
+  COMPONENT_NAME: petkit
+
+permissions: {}
+
+jobs:
+  release:
+    name: "Release"
+    runs-on: "ubuntu-latest"
+    permissions:
+      contents: write
+    steps:
+      - name: "Checkout the repository"
+        uses: actions/checkout@v4
+
+      - name: "Adjust version number in manifest"
+        shell: bash
+        run: |
+          version="${{ github.event.release.tag_name }}"
+          # Use python to update JSON (no yq dependency needed)
+          python3 -c "
+          import json, pathlib
+          p = pathlib.Path('custom_components/${{ env.COMPONENT_NAME }}/manifest.json')
+          m = json.loads(p.read_text())
+          m['version'] = '${version}'
+          p.write_text(json.dumps(m, indent=2) + '\n')
+          "
+
+      - name: "ZIP the integration directory"
+        shell: bash
+        run: |
+          cd "custom_components/${{ env.COMPONENT_NAME }}"
+          zip ${{ env.COMPONENT_NAME }}.zip -r ./ -x '__pycache__/*' -x '*/__pycache__/*' -x '.DS_Store'
+
+      - name: "Upload the ZIP file to the release"
+        uses: softprops/action-gh-release@v2
+        with:
+          files: custom_components/${{ env.COMPONENT_NAME }}/${{ env.COMPONENT_NAME }}.zip
