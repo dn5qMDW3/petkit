@@ -124,7 +124,9 @@ class PetKitDescSensorBase(EntityDescription):
                         self.key,
                     )
                     return False
-                LOGGER.debug("%s supports '%s'", device.device_nfo.device_type, self.key)
+                LOGGER.debug(
+                    "%s supports '%s'", device.device_nfo.device_type, self.key
+                )
             except AttributeError:
                 LOGGER.debug(
                     "%s DOES NOT support '%s'",

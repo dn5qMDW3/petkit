@@ -239,11 +239,14 @@ class AgoraRTMSignaling:
             LOGGER.debug("Send command URL= %s", url)
 
             try:
-                async with self._send_lock, self._session.post(
-                    url,
-                    json=request_body,
-                    headers=headers,
-                ) as response:
+                async with (
+                    self._send_lock,
+                    self._session.post(
+                        url,
+                        json=request_body,
+                        headers=headers,
+                    ) as response,
+                ):
                     response_text = await response.text()
             except (aiohttp.ClientError, TimeoutError) as err:
                 LOGGER.debug(

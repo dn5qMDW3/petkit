@@ -128,9 +128,9 @@ class AgoraWebSocketHandler:
         # Add gathered candidates to ORTC offer before join_v3.
         gathered_candidates = self._convert_candidates_to_ortc()
         if gathered_candidates:
-            ortc_info.setdefault("iceParameters", {})[
-                "candidates"
-            ] = gathered_candidates
+            ortc_info.setdefault("iceParameters", {})["candidates"] = (
+                gathered_candidates
+            )
         LOGGER.debug(
             "Agora join_v3: session=%s gathered_candidates=%d",
             session_id,

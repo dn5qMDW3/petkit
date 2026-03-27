@@ -92,7 +92,9 @@ class PetkitDataUpdateCoordinator(DataUpdateCoordinator):
     def enable_smart_polling(self, nb_tic: int) -> None:
         """Enable smart polling."""
         if self.fast_poll_tic > 0:
-            LOGGER.debug("Fast poll tic already enabled for %s tics", self.fast_poll_tic)
+            LOGGER.debug(
+                "Fast poll tic already enabled for %s tics", self.fast_poll_tic
+            )
             return
 
         self.update_interval = timedelta(seconds=SCAN_INTERVAL_FAST)
@@ -347,8 +349,10 @@ class PetkitBluetoothUpdateCoordinator(DataUpdateCoordinator):
             device_id
         ):
             await asyncio.sleep(5)
-            await self.config.runtime_data.client.bluetooth_manager.close_ble_connection(
-                device_id
+            await (
+                self.config.runtime_data.client.bluetooth_manager.close_ble_connection(
+                    device_id
+                )
             )
             LOGGER.debug("Bluetooth connection for device id = %s is OK", device_id)
             self.last_update_timestamps[device_id] = datetime.now(timezone.utc)

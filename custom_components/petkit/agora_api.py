@@ -442,10 +442,7 @@ class AgoraAPIClient:
         proxy_server: str | None = None,
     ) -> dict[str, Any]:
         if proxy_server:
-            url = (
-                f"https://{proxy_server}/ap/?url="
-                f"{domain}/api/v2/transpond/webrtc?v=2"
-            )
+            url = f"https://{proxy_server}/ap/?url={domain}/api/v2/transpond/webrtc?v=2"
         else:
             url = f"https://{domain}/api/v2/transpond/webrtc?v=2"
 

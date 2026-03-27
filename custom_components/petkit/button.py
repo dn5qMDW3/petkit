@@ -134,8 +134,10 @@ BUTTON_MAPPING: dict[type[PetkitDevices], list[PetKitButtonDesc]] = {
                 {DeviceAction.END: LBCommand.MAINTENANCE},
             ),
             only_for_types=[T4, T5],
-            is_available=lambda device: device.state.work_state is not None
-            and device.state.work_state.work_mode == 9,
+            is_available=lambda device: (
+                device.state.work_state is not None
+                and device.state.work_state.work_mode == 9
+            ),
         ),
         PetKitButtonDesc(
             key="Dump litter",

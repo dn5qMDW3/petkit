@@ -362,8 +362,9 @@ SENSOR_MAPPING: dict[type[PetkitDevices], list[PetKitSensorDesc]] = {
             key="State",
             translation_key="litter_state",
             value=lambda device: map_work_state(device.state.work_state),
-            smart_poll_trigger=lambda device: map_work_state(device.state.work_state)
-            != "idle",
+            smart_poll_trigger=lambda device: (
+                map_work_state(device.state.work_state) != "idle"
+            ),
         ),
         PetKitSensorDesc(
             key="Litter last event",
