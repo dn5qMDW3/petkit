@@ -1,0 +1,778 @@
+{
+  "config": {
+    "error": {
+      "account_exists": "账号已存在",
+      "connection": "无法连接到服务器",
+      "unknown": "发生未知错误，请检查日志"
+    },
+    "step": {
+      "user": {
+        "data": {
+          "password": "密码",
+          "region": "区域",
+          "time_zone": "时区",
+          "username": "用户名/手机号"
+        },
+        "data_description": {
+          "region": "此字段将根据 Home Assistant 配置自动填入。如果您的区域不同，请从列表中选择。",
+          "time_zone": "此字段将根据 Home Assistant 配置自动填入。如果您的时区不同，请从列表中选择。",
+          "username": "输入您的小佩账号电子邮箱，如果您是中国用户，请输入绑定的手机号"
+        },
+        "description": "请输入你的小佩账号信息"
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "yowling_detected": {
+        "name": "检测到猫叫"
+      },
+      "abnormal_ph_detected": {
+        "name": "检测到尿液pH值异常"
+      },
+      "soft_stool_detected": {
+        "name": "检测到软便"
+      },
+      "battery": {
+        "name": "电池"
+      },
+      "weight_error": {
+        "name": "重量错误"
+      },
+      "pet_error": {
+        "name": "宠物错误"
+      },
+      "light": {
+        "name": "指示灯"
+      },
+      "spray": {
+        "name": "喷雾净味器"
+      },
+      "battery_installed": {
+        "name": "电池已安装"
+      },
+      "camera_status": {
+        "name": "摄像头状态"
+      },
+      "n60_deodorize_presence": {
+        "name": "净味小方N60状态"
+      },
+      "care_plus_subscription": {
+        "name": "Care+ 订阅"
+      },
+      "deodorizer": {
+        "name": "除臭剂"
+      },
+      "deodorization_running": {
+        "name": "除臭"
+      },
+      "do_not_disturb_state": {
+        "name": "勿扰模式"
+      },
+      "eating": {
+        "name": "进食"
+      },
+      "feeding": {
+        "name": "出粮"
+      },
+      "food_level": {
+        "name": "粮仓等级"
+      },
+      "food_level_1": {
+        "name": "1号粮仓"
+      },
+      "food_level_2": {
+        "name": "2号粮仓"
+      },
+      "frequent_use": {
+        "name": "频繁使用检测"
+      },
+      "lack_warning": {
+        "name": "缺水警告"
+      },
+      "pet_detected": {
+        "name": "正在饮水"
+      },
+      "pump_running": {
+        "name": "泵水中"
+      },
+      "liquid_lack": {
+        "name": "净化液不足"
+      },
+      "litter": {
+        "name": "猫厕所"
+      },
+      "low_battery": {
+        "name": "低电量"
+      },
+      "low_power": {
+        "name": "电源"
+      },
+      "manually_paused": {
+        "name": "手动暂停"
+      },
+      "on_ac_power": {
+        "name": "接入交流电"
+      },
+      "pura_air_liquid": {
+        "name": "净味器净化液"
+      },
+      "replace_filter": {
+        "name": "更换滤芯"
+      },
+      "sand_lack": {
+        "name": "猫砂缺少"
+      },
+      "toilet_occupied": {
+        "name": "宠物如厕中"
+      },
+      "waste_bin": {
+        "name": "垃圾箱已满"
+      },
+      "waste_bin_presence": {
+        "name": "垃圾箱在位"
+      },
+      "water_level": {
+        "name": "水位"
+      }
+    },
+    "button": {
+      "action_continue": {
+        "name": "动作 : 继续"
+      },
+      "action_pause": {
+        "name": "动作 : 暂停"
+      },
+      "action_reset": {
+        "name": "动作 : 复位"
+      },
+      "call_pet": {
+        "name": "呼唤宠物"
+      },
+      "cancel_manual_feed": {
+        "name": "取消手动加餐"
+      },
+      "deodorize": {
+        "name": "除臭"
+      },
+      "dump_litter": {
+        "name": "倾空猫砂"
+      },
+      "exit_maintenance": {
+        "name": "维护模式 : 退出"
+      },
+      "food_replenished": {
+        "name": "立即加餐"
+      },
+      "reset_desiccant": {
+        "name": "复位干燥剂"
+      },
+      "reset_n50_odor_eliminator": {
+        "name": "复位N50除臭小方"
+      },
+      "reset_n60_odor_eliminator": {
+        "name": "复位N60净味小方"
+      },
+      "start_maintenance": {
+        "name": "维护模式 : 开始"
+      },
+      "start_scoop": {
+        "name": "清理"
+      },
+      "level_litter": {
+        "name": "抚平"
+      },
+      "reset_filter": {
+        "name": "复位滤芯"
+      }
+    },
+    "fan": {
+      "air_purifier_fan": {
+        "name": "净味器"
+      }
+    },
+    "image": {
+      "last_eat_event": {
+        "name": "上次进食事件"
+      },
+      "last_feed_event": {
+        "name": "上次出粮事件"
+      },
+      "last_toileting_event": {
+        "name": "上次如厕事件"
+      },
+      "last_visit_event": {
+        "name": "上次路过事件"
+      },
+      "dish_before": {
+        "name": "进食前"
+      },
+      "dish_after": {
+        "name": "进食后"
+      },
+      "waste_check": {
+        "name": "集便盒检查"
+      }
+    },
+    "number": {
+      "cleaning_delay": {
+        "name": "清理延迟"
+      },
+      "manual_feed": {
+        "name": "手动加餐（份）"
+      },
+      "min_eating_duration": {
+        "name": "最小进食间隔"
+      },
+      "surplus": {
+        "name": "碗内余粮"
+      },
+      "volume": {
+        "name": "音量"
+      }
+    },
+    "select": {
+      "avoid_repeat_cleaning_interval": {
+        "name": "避免重复清理间隔"
+      },
+      "eat_detection_sensitivity": {
+        "name": "进食侦测灵敏度"
+      },
+      "litter_type": {
+        "name": "猫砂种类"
+      },
+      "working_mode": {
+        "name": "工作模式"
+      },
+      "led_brightness": {
+        "name": "Led亮度"
+      },
+      "move_detection_sensitivity": {
+        "name": "移动侦测灵敏度"
+      },
+      "pet_detection_sensitivity": {
+        "name": "宠物侦测灵敏度"
+      },
+      "surplus_level": {
+        "name": "碗内余粮控制等级"
+      }
+    },
+    "sensor": {
+      "urine_measured_ph": {
+        "name": "尿液pH值"
+      },
+      "pet_last_urination_date": {
+        "name": "上次排尿"
+      },
+      "pet_last_defecation_date": {
+        "name": "上次排便"
+      },
+      "air_purified": {
+        "name": "空气净化"
+      },
+      "amount_eaten": {
+        "name": "进食量"
+      },
+      "battery_voltage": {
+        "name": "电池电压"
+      },
+      "supply_voltage": {
+        "name": "电源电压"
+      },
+      "average_time": {
+        "name": "平均使用时间"
+      },
+      "avg_eating_time": {
+        "name": "平均进食时间"
+      },
+      "battery_level": {
+        "name": "电量"
+      },
+      "odor_eliminator_n50_left_days": {
+        "name": "除臭小方N50剩余天数"
+      },
+      "odor_eliminator_n60_left_days": {
+        "name": "净味小方N60剩余天数"
+      },
+      "deodorizer_level": {
+        "name": "除臭等级"
+      },
+      "desiccant_left_days": {
+        "name": "干燥剂剩余天数"
+      },
+      "device_status": {
+        "name": "设备状态"
+      },
+      "drink_times": {
+        "name": "饮水次数"
+      },
+      "end_date_care_plus_subscription": {
+        "name": "Care+ 订阅结束日期"
+      },
+      "error": {
+        "name": "错误"
+      },
+      "battery": {
+        "name": "电池"
+      },
+      "error_message": {
+        "name": "错误",
+        "state": {
+          "no_error": "没有错误"
+        }
+      },
+      "feeder_error": {
+        "name": "喂食器错误"
+      },
+      "filter_percent": {
+        "name": "滤芯剩余"
+      },
+      "food_bowl_percentage": {
+        "name": "粮碗百分比"
+      },
+      "food_in_bowl": {
+        "name": "碗内有粮"
+      },
+      "food_left": {
+        "name": "余粮"
+      },
+      "last_connection": {
+        "name": "上次低功耗蓝牙连接"
+      },
+      "last_update": {
+        "name": "上次更新"
+      },
+      "last_used_by": {
+        "name": "上次使用于"
+      },
+      "litter_last_event": {
+        "name": "最近事件",
+        "state": {
+          "auto_cleaning_canceled": "自动清理已取消",
+          "auto_cleaning_canceled_kitten": "自动清理已取消: 幼猫保护中",
+          "auto_cleaning_completed": "自动清理已完成",
+          "auto_cleaning_failed_full": "自动清理失败: 集便盒已满",
+          "auto_cleaning_failed_hall_l": "自动清理失败: 设备滚筒锁定旋钮未锁定",
+          "auto_cleaning_failed_hall_t": "自动清理失败: 设备上盖未安装",
+          "auto_cleaning_terminated": "自动清理已被终止",
+          "auto_odor_failed": "自动除臭失败",
+          "clean_over": "清理",
+          "deodorant_finished": "除臭已完成",
+          "deodorant_finished_liquid_lack": "除臭已完成: 净化液不足",
+          "light_over": "灯光",
+          "litter_empty_completed": "倾空猫砂已完成",
+          "litter_empty_failed_full": "倾空猫砂失败: 集便盒已满",
+          "litter_empty_failed_hall_l": "倾空猫砂失败: 设备滚筒锁定旋钮未锁定",
+          "litter_empty_failed_hall_t": "倾空猫砂失败: 设备上盖未安装",
+          "litter_empty_terminated": "倾空猫砂已被终止",
+          "manual_cleaning_canceled": "手动清理已取消",
+          "manual_cleaning_completed": "手动清理已完成",
+          "manual_cleaning_failed_full": "手动清理失败: 集便盒已满",
+          "manual_cleaning_failed_hall_l": "手动清理失败: 设备滚筒锁定旋钮未锁定",
+          "manual_cleaning_failed_hall_t": "手动清理失败: 设备上盖未安装",
+          "manual_cleaning_terminated": "手动清理已被终止",
+          "manual_odor_completed": "手动除臭已完成",
+          "manual_odor_completed_liquid_lack": "手动除臭已完成: 净化液不足",
+          "manual_odor_failed": "手动除臭失败",
+          "periodic_cleaning_canceled": "定时清理已取消",
+          "periodic_cleaning_canceled_kitten": "定时清理已取消: 幼猫保护中",
+          "periodic_cleaning_completed": "定时清理已完成",
+          "periodic_cleaning_terminated": "定时清理已被终止",
+          "periodic_odor_completed": "定时除臭已完成",
+          "periodic_odor_completed_liquid_lack": "定时除臭已完成: 净化液不足",
+          "periodic_odor_failed": "定时除臭失败",
+          "pet_detect": "检测到宠物",
+          "pet_out": "宠物离开",
+          "reset_completed": "重置成功",
+          "reset_failed_full": "重置失败: 集便盒已满",
+          "reset_failed_hall_l": "重置失败: 设备滚筒锁定旋钮未锁定",
+          "reset_failed_hall_t": "重置失败: 设备上盖未安装",
+          "reset_over": "重置",
+          "reset_terminated": "重置被终止",
+          "scheduled_cleaning_failed_full": "计划清理失败: 集便盒已满",
+          "scheduled_cleaning_failed_hall_l": "计划清理失败: 设备滚筒锁定旋钮未锁定",
+          "scheduled_cleaning_failed_hall_t": "计划清理失败: 设备上盖未安装",
+          "spray_over": "除臭"
+        }
+      },
+      "litter_level": {
+        "name": "猫砂等级"
+      },
+      "litter_state": {
+        "name": "状态",
+        "state": {
+          "calibrating": "校准中",
+          "cleaning": "清理中",
+          "cleaning_paused": "自动清理已暂停",
+          "cleaning_paused_cover": "自动清理已暂停 - 磁吸盖已取出",
+          "cleaning_paused_pet_approach": "自动清理已暂停 - 宠物靠近",
+          "cleaning_paused_pet_entered": "自动清理已暂停 - 宠物进入",
+          "cleaning_paused_pet_using": "自动清理已暂停 - 宠物使用",
+          "cleaning_paused_system_error": "自动清理已暂停 - 系统错误",
+          "dumping": "倾空猫砂中",
+          "dumping_paused": "倾空猫砂已暂停",
+          "dumping_paused_cover": "倾空猫砂已暂停 - 磁吸盖已取出",
+          "dumping_paused_pet_approach": "倾空猫砂已暂停 - 宠物靠近",
+          "dumping_paused_pet_entered": "倾空猫砂已暂停 - 宠物进入",
+          "dumping_paused_pet_using": "倾空猫砂已暂停 - 宠物使用",
+          "dumping_paused_system_error": "倾空猫砂已暂停 - 系统错误",
+          "idle": "空闲",
+          "leveling": "正在平整猫砂",
+          "maintenance": "维护",
+          "maintenance_paused": "维护已暂停",
+          "maintenance_paused_cover": "维护已暂停 - 磁吸盖已取出",
+          "maintenance_paused_pet_approach": "维护已暂停 - 宠物靠近",
+          "maintenance_paused_pet_entered": "维护已暂停 - 宠物进入",
+          "maintenance_paused_pet_using": "维护已暂停 - 宠物使用",
+          "maintenance_paused_system_error": "维护已暂停 - 系统错误",
+          "paused": "已暂停",
+          "paused_cover": "已暂停 - 磁吸盖已取出",
+          "paused_pet_approach": "已暂停 - 宠物靠近",
+          "paused_pet_entered": "已暂停 - 宠物进入",
+          "paused_pet_using": "已暂停 - 宠物使用",
+          "paused_system_error": "已暂停 - 系统错误",
+          "resetting": "正在复位",
+          "resetting_device": "设备正在复位",
+          "unknown": "未知"
+        }
+      },
+      "litter_weight": {
+        "name": "猫砂重量"
+      },
+      "manual_dispensed": {
+        "name": "手动出粮"
+      },
+      "manual_dispensed_hopper_1": {
+        "name": "1号粮仓手动出粮"
+      },
+      "manual_dispensed_hopper_2": {
+        "name": "2号粮仓手动出粮"
+      },
+      "package_used": {
+        "name": "已打包"
+      },
+      "pet_last_device_used": {
+        "name": "上次使用于"
+      },
+      "pet_last_use_date": {
+        "name": "上次使用日期"
+      },
+      "connection_state": {
+        "name": "连接状态"
+      },
+      "pet_last_use_duration": {
+        "name": "上次使用时长"
+      },
+      "pet_last_weight_measurement": {
+        "name": "上次称重"
+      },
+      "planned_dispensed": {
+        "name": "计划出粮"
+      },
+      "planned_dispensed_hopper_1": {
+        "name": "1号粮仓计划出粮"
+      },
+      "planned_dispensed_hopper_2": {
+        "name": "2号粮仓计划出粮"
+      },
+      "purified_water": {
+        "name": "净水"
+      },
+      "purifier_liquid": {
+        "name": "水位"
+      },
+      "raw_distribution_data": {
+        "name": "原始分配数据"
+      },
+      "rssi": {
+        "name": "信号强度"
+      },
+      "spray_times": {
+        "name": "喷雾除臭次数"
+      },
+      "spray_deodorant_liquid": {
+        "name": "净化液"
+      },
+      "times_dispensed": {
+        "name": "出粮次数"
+      },
+      "times_eaten": {
+        "name": "进食次数"
+      },
+      "times_used": {
+        "name": "使用次数"
+      },
+      "total_dispensed": {
+        "name": "出粮量"
+      },
+      "total_dispensed_hopper_1": {
+        "name": "1号粮仓总出粮量"
+      },
+      "total_dispensed_hopper_2": {
+        "name": "2号粮仓总出粮量"
+      },
+      "total_package": {
+        "name": "总打包"
+      },
+      "total_planned": {
+        "name": "总计划出粮量"
+      },
+      "total_planned_hopper_1": {
+        "name": "1号粮仓总计划出粮量"
+      },
+      "total_planned_hopper_2": {
+        "name": "2号粮仓总计划出粮量"
+      },
+      "total_time": {
+        "name": "总使用时间"
+      }
+    },
+    "switch": {
+      "soft_stool": {
+        "name": "AI 软便识别"
+      },
+      "soft_stool_stop_cleaning": {
+        "name": "检测到软便时停止清理"
+      },
+      "auto_clean": {
+        "name": "自动清理"
+      },
+      "auto_odor": {
+        "name": "自动除臭"
+      },
+      "avoid_repeat_clean": {
+        "name": "避免重复清理"
+      },
+      "camera": {
+        "name": "摄像头"
+      },
+      "child_lock": {
+        "name": "童锁"
+      },
+      "cont_rotation": {
+        "name": "回转不中断"
+      },
+      "deep_cleaning": {
+        "name": "深度清理"
+      },
+      "deep_deodor": {
+        "name": "深度除臭"
+      },
+      "deodorant_n50_notify": {
+        "name": "除臭小方N50更换提醒"
+      },
+      "deodorant_n60_notify": {
+        "name": "净味小方N60更换提醒"
+      },
+      "desiccant_notif": {
+        "name": "干燥剂更换提醒"
+      },
+      "dispensing_notif": {
+        "name": "出粮通知"
+      },
+      "display": {
+        "name": "显示屏"
+      },
+      "do_not_disturb": {
+        "name": "免打扰"
+      },
+      "feed_sound": {
+        "name": "喂食音效"
+      },
+      "feed_tone": {
+        "name": "喂食提示音"
+      },
+      "highlight": {
+        "name": "每日精彩"
+      },
+      "indicator_light": {
+        "name": "指示灯"
+      },
+      "camera_light": {
+        "name": "摄像头指示灯"
+      },
+      "kitten_mode": {
+        "name": "幼猫模式"
+      },
+      "lack_liquid_notify": {
+        "name": "缺少净化剂通知"
+      },
+      "pet_toileting_notif": {
+        "name": "宠物如厕通知"
+      },
+      "lack_sand_notify": {
+        "name": "缺少猫砂通知"
+      },
+      "light": {
+        "name": "照明"
+      },
+      "light_assist": {
+        "name": "灯光辅助"
+      },
+      "light_weight": {
+        "name": "过轻体重"
+      },
+      "litter_full_notify": {
+        "name": "垃圾箱满通知"
+      },
+      "low_battery_notif": {
+        "name": "低电量通知"
+      },
+      "microphone": {
+        "name": "麦克风"
+      },
+      "move_notif": {
+        "name": "移动通知"
+      },
+      "night_vision": {
+        "name": "夜视模式"
+      },
+      "periodic_cleaning": {
+        "name": "定时清理"
+      },
+      "periodic_deodorizing": {
+        "name": "定时除臭"
+      },
+      "pet_eat_notif": {
+        "name": "进食事件通知"
+      },
+      "pet_in_notify": {
+        "name": "宠物如厕通知"
+      },
+      "pet_tracking": {
+        "name": "宠物侦测"
+      },
+      "pet_visit_notif": {
+        "name": "宠物事件通知"
+      },
+      "power": {
+        "name": "电源"
+      },
+      "proximity_sensor": {
+        "name": "感应出水"
+      },
+      "refill_notif": {
+        "name": "缺粮通知"
+      },
+      "sand_saving": {
+        "name": "节省猫砂"
+      },
+      "shortage_alarm": {
+        "name": "空粮报警"
+      },
+      "surplus_control": {
+        "name": "碗内余粮控制"
+      },
+      "system_notification": {
+        "name": "系统提示音"
+      },
+      "video_timestamp": {
+        "name": "时间戳显示"
+      },
+      "voice_dispense": {
+        "name": "出粮自动呼唤宠物"
+      },
+      "waste_covering": {
+        "name": "辅助掩埋"
+      },
+      "work_log_notify": {
+        "name": "计划执行时通知"
+      },
+      "toilet_light": {
+        "name": "如厕时灯光辅助"
+      },
+      "privacy_mode": {
+        "name": "回家模式"
+      },
+      "work_notify": {
+        "name": "设备清理时通知"
+      },
+      "privacy_camera_off": {
+        "name": "回家模式: 摄像头关闭"
+      },
+      "privacy_camera_inward": {
+        "name": "回家模式: 摄像头转向筒内"
+      },
+      "privacy_microphone_off": {
+        "name": "回家模式: 麦克风关闭"
+      },
+      "ai_ph_detection": {
+        "name": "AI pH值检测"
+      },
+      "ai_yowling": {
+        "name": "AI 猫叫检测"
+      }
+    },
+    "light": {
+      "light": {
+        "name": "照明"
+      }
+    },
+    "camera": {
+      "camera": {
+        "name": "摄像头视频流"
+      }
+    },
+    "text": {
+      "manual_feed_dual_h1": {
+        "name": "1号粮仓手动出粮"
+      },
+      "manual_feed_dual_h2": {
+        "name": "2号粮仓手动出粮"
+      },
+      "manual_feed_single": {
+        "name": "手动出粮"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "always_on_stream": "常开转播流",
+          "region": "区域",
+          "scan_interval": "默认轮询间隔（秒）",
+          "smart_polling": "智能轮询",
+          "time_zone": "时区"
+        },
+        "data_description": {
+          "always_on_stream": "保持内部转播会话处于预热状态，让浏览器观看、WHEP 客户端以及此摄像头的通用流消费者都能更快连接。该转播流也可以被其他消费者复用。这样会持续维持一个上游会话，并占用更多设备和云端资源。",
+          "smart_polling": "智能轮询会根据设备的事件/操作自动调整轮询间隔。"
+        },
+        "sections": {
+          "bluetooth_options": {
+            "data": {
+              "ble_relay_enabled": "启用蓝牙中继",
+              "scan_interval_bluetooth": "蓝牙刷新间隔（分钟）"
+            },
+            "data_description": {
+              "ble_relay_enabled": "禁用后，只有在通过应用程序刷新设备时才会进行饮水机数据更新。"
+            },
+            "description": "这些选项只有在您有饮水机和至少一个可用作蓝牙中继的设备（如喂食器、猫砂盆）时才有效。有关详细信息请参阅小佩应用程序。",
+            "name": "蓝牙选项"
+          },
+          "medias_options": {
+            "data": {
+              "delete_media_after": "在指定时间之后删除媒体（天数）",
+              "media_dl_image": "获取图片",
+              "media_dl_video": "获取视频",
+              "media_ev_type": "要下载的事件类型",
+              "media_path": "媒体路径",
+              "scan_interval_media": "媒体刷新间隔（分钟）"
+            },
+            "data_description": {
+              "delete_media_after": "在指定天数后删除下载的媒体。(0 = 永不删除）",
+              "media_dl_image": "从您的设备下载所有图片，按以下选定的事件进行筛选。（无需 Care+ 订阅）",
+              "media_dl_video": "从您的设备下载所有视频，按以下选定的事件进行筛选。（需要激活 Care+ 订阅）",
+              "media_path": "媒体存储的路径。如果未指定，媒体将存储在 Home Assistant 的 /media 文件夹中。",
+              "scan_interval_media": "从小佩服务器下载新媒体（图片和视频）的时间间隔。"
+            },
+            "description": "这些选项只有在您至少有一个能够捕捉图像和视频的设备（如喂食器、猫砂盆）时才有效。",
+            "name": "媒体选项"
+          }
+        },
+        "title": "小佩集成配置"
+      }
+    }
+  }
+}

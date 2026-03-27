@@ -1,0 +1,530 @@
+{
+  "config": {
+    "error": {
+      "account_exists": "Esta cuenta ya existe.",
+      "connection": "No se puede conectar al servidor.",
+      "unknown": "Ocurri\u00f3 un error desconocido, por favor revisa los registros."
+    },
+    "step": {
+      "user": {
+        "data": {
+          "password": "Contrase\u00f1a",
+          "region": "Regi\u00f3n",
+          "timezone": "Zona horaria",
+          "username": "Nombre de usuario/Id"
+        },
+        "description": "Por favor ingresa los detalles de tu cuenta PetKit."
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "battery": {
+        "name": "Bater\u00eda"
+      },
+      "battery_installed": {
+        "name": "Bater\u00eda instalada"
+      },
+      "camera_status": {
+        "name": "Estado de la c\u00e1mara"
+      },
+      "care_plus_subscription": {
+        "name": "Suscripci\u00f3n Care+"
+      },
+      "deodorizer": {
+        "name": "Desodorizante"
+      },
+      "eating": {
+        "name": "Comiendo"
+      },
+      "feeding": {
+        "name": "Alimentando"
+      },
+      "food_level": {
+        "name": "Nivel de comida"
+      },
+      "food_level_1": {
+        "name": "Nivel de comida hopper 1"
+      },
+      "food_level_2": {
+        "name": "Nivel de comida hopper 2"
+      },
+      "lack_warning": {
+        "name": "Advertencia de falta de agua"
+      },
+      "liquid_empty": {
+        "name": "L\u00edquido desodorizante vac\u00edo"
+      },
+      "liquid_lack": {
+        "name": "Falta de l\u00edquido desodorizante"
+      },
+      "litter": {
+        "name": "Arena"
+      },
+      "low_battery": {
+        "name": "Bater\u00eda baja"
+      },
+      "low_power": {
+        "name": "Energ\u00eda baja"
+      },
+      "manually_paused": {
+        "name": "Pausado manualmente"
+      },
+      "on_ac_power": {
+        "name": "Con energ\u00eda AC"
+      },
+      "pura_air_liquid": {
+        "name": "L\u00edquido Pura Air"
+      },
+      "sand_lack": {
+        "name": "Falta de arena"
+      },
+      "waste_bin": {
+        "name": "Cubo de basura lleno"
+      },
+      "waste_bin_presence": {
+        "name": "Presencia de cubo de basura"
+      },
+      "water_level": {
+        "name": "Nivel de agua"
+      }
+    },
+    "button": {
+      "action_continue": {
+        "name": "Acci\u00f3n: Continuar"
+      },
+      "action_pause": {
+        "name": "Acci\u00f3n: Pausar"
+      },
+      "action_reset": {
+        "name": "Acci\u00f3n: Restablecer"
+      },
+      "call_pet": {
+        "name": "Llamar al pet"
+      },
+      "cancel_manual_feed": {
+        "name": "Cancelar alimentaci\u00f3n manual"
+      },
+      "deodorize": {
+        "name": "Desodorizar"
+      },
+      "dump_litter": {
+        "name": "Verter arena"
+      },
+      "exit_maintenance": {
+        "name": "Mantenimiento: Salir"
+      },
+      "food_replenished": {
+        "name": "Comida reabastecida"
+      },
+      "reset_desiccant": {
+        "name": "Restablecer desecante"
+      },
+      "reset_odor_eliminator": {
+        "name": "Restablecer eliminador de olores"
+      },
+      "start_maintenance": {
+        "name": "Mantenimiento: Iniciar"
+      },
+      "start_scoop": {
+        "name": "Recoger"
+      }
+    },
+    "image": {
+      "last_eat_event": {
+        "name": "\u00daltimo evento de comida"
+      },
+      "last_feed_event": {
+        "name": "\u00daltimo evento de alimentaci\u00f3n"
+      },
+      "last_visit_event": {
+        "name": "\u00daltimo evento de visita"
+      }
+    },
+    "number": {
+      "cleaning_delay": {
+        "name": "Retraso de limpieza"
+      },
+      "manual_feed": {
+        "name": "Alimentaci\u00f3n manual"
+      },
+      "min_eating_duration": {
+        "name": "Duraci\u00f3n m\u00ednima de comida"
+      },
+      "surplus": {
+        "name": "Exceso"
+      },
+      "volume": {
+        "name": "Volumen"
+      }
+    },
+    "select": {
+      "cleaning_interval": {
+        "name": "Intervalo de limpieza"
+      },
+      "eat_detection_sensitivity": {
+        "name": "Sensibilidad detecci\u00f3n de comida IA"
+      },
+      "litter_type": {
+        "name": "Tipo de arena"
+      },
+      "move_detection_sensitivity": {
+        "name": "Sensibilidad detecci\u00f3n de movimiento"
+      },
+      "pet_detection_sensitivity": {
+        "name": "Sensibilidad detecci\u00f3n de mascota IA"
+      },
+      "surplus_level": {
+        "name": "Nivel de control de exceso"
+      }
+    },
+    "sensor": {
+      "amount_eaten": {
+        "name": "Cantidad de comida consumida"
+      },
+      "average_time": {
+        "name": "Uso promedio"
+      },
+      "avg_eating_time": {
+        "name": "Tiempo promedio de comida"
+      },
+      "battery_level": {
+        "name": "Nivel de bater\u00eda"
+      },
+      "deodorant_left_days": {
+        "name": "D\u00edas restantes de desodorizante"
+      },
+      "deodorizer_level": {
+        "name": "Nivel de desodorizante"
+      },
+      "desiccant_left_days": {
+        "name": "D\u00edas restantes de desecante"
+      },
+      "device_status": {
+        "name": "Estado del dispositivo"
+      },
+      "drink_times": {
+        "name": "Veces que bebi\u00f3"
+      },
+      "end_date_care_plus_subscription": {
+        "name": "Fin de la suscripci\u00f3n Care+"
+      },
+      "error": {
+        "name": "Error"
+      },
+      "error_message": {
+        "name": "Error",
+        "state": {
+          "no_error": "Sin error"
+        }
+      },
+      "feeder_error": {
+        "name": "Error de alimentador"
+      },
+      "filter_percent": {
+        "name": "Filtro restante"
+      },
+      "food_bowl_percentage": {
+        "name": "Porcentaje de comida en el taz\u00f3n"
+      },
+      "food_in_bowl": {
+        "name": "Comida en el bol"
+      },
+      "food_left": {
+        "name": "Comida restante"
+      },
+      "last_update": {
+        "name": "\u00daltima actualizaci\u00f3n"
+      },
+      "last_used_by": {
+        "name": "\u00daltimo utilizado por"
+      },
+      "litter_last_event": {
+        "name": "\u00daltimo evento",
+        "state": {
+          "auto_cleaning_canceled": "Limpieza autom\u00e1tica cancelada",
+          "auto_cleaning_canceled_kitten": "Limpieza autom\u00e1tica cancelada: gatito",
+          "auto_cleaning_completed": "Limpieza autom\u00e1tica completada",
+          "auto_cleaning_failed_full": "Limpieza autom\u00e1tica fallida: lleno",
+          "auto_cleaning_failed_hall_l": "Limpieza autom\u00e1tica fallida: sala L",
+          "auto_cleaning_failed_hall_t": "Limpieza autom\u00e1tica fallida: sala T",
+          "auto_cleaning_terminated": "Limpieza autom\u00e1tica terminada",
+          "auto_odor_failed": "Fallo de desodorizaci\u00f3n autom\u00e1tica",
+          "clean_over": "Limpieza",
+          "deodorant_finished": "Desodorizante terminado",
+          "deodorant_finished_liquid_lack": "Desodorizante terminado: falta de l\u00edquido",
+          "litter_empty_completed": "Vaciado de arena completado",
+          "litter_empty_failed_full": "Fallo al vaciar la arena: lleno",
+          "litter_empty_failed_hall_l": "Fallo al vaciar la arena: sala L",
+          "litter_empty_failed_hall_t": "Fallo al vaciar la arena: sala T",
+          "litter_empty_terminated": "Vaciado de arena terminado",
+          "manual_cleaning_canceled": "Limpieza manual cancelada",
+          "manual_cleaning_completed": "Limpieza manual completada",
+          "manual_cleaning_failed_full": "Fallo al limpiar manualmente: lleno",
+          "manual_cleaning_failed_hall_l": "Fallo al limpiar manualmente: sala L",
+          "manual_cleaning_failed_hall_t": "Fallo al limpiar manualmente: sala T",
+          "manual_cleaning_terminated": "Limpieza manual terminada",
+          "manual_odor_completed": "Desodorizaci\u00f3n manual completada",
+          "manual_odor_completed_liquid_lack": "Desodorizaci\u00f3n manual completada: falta de l\u00edquido",
+          "manual_odor_failed": "Fallo en la desodorizaci\u00f3n manual",
+          "periodic_cleaning_canceled": "Limpieza peri\u00f3dica cancelada",
+          "periodic_cleaning_canceled_kitten": "Limpieza peri\u00f3dica cancelada: gatito",
+          "periodic_cleaning_completed": "Limpieza peri\u00f3dica completada",
+          "periodic_cleaning_terminated": "Limpieza peri\u00f3dica terminada",
+          "periodic_odor_completed": "Desodorizaci\u00f3n peri\u00f3dica completada",
+          "periodic_odor_completed_liquid_lack": "Desodorizaci\u00f3n peri\u00f3dica completada: falta de l\u00edquido",
+          "periodic_odor_failed": "Fallo en la desodorizaci\u00f3n peri\u00f3dica",
+          "reset_completed": "Restablecimiento completado",
+          "reset_failed_full": "Restablecimiento fallido: lleno",
+          "reset_failed_hall_l": "Restablecimiento fallido: sala L",
+          "reset_failed_hall_t": "Restablecimiento fallido: sala T",
+          "reset_over": "Restablecimiento",
+          "reset_terminated": "Restablecimiento terminado",
+          "scheduled_cleaning_failed_full": "Limpieza programada fallida: lleno",
+          "scheduled_cleaning_failed_hall_l": "Limpieza programada fallida: sala L",
+          "scheduled_cleaning_failed_hall_t": "Limpieza programada fallida: sala T"
+        }
+      },
+      "litter_level": {
+        "name": "Nivel de arena"
+      },
+      "litter_state": {
+        "name": "Estado",
+        "state": {
+          "calibrating": "Calibrando",
+          "cleaning": "Limpiando",
+          "cleaning_paused": "Limpieza en pausa",
+          "cleaning_paused_cover": "Limpieza en pausa - Cubierta",
+          "cleaning_paused_pet_approach": "Limpieza en pausa - Acercamiento de mascota",
+          "cleaning_paused_pet_entered": "Limpieza en pausa - Mascota entr\u00f3",
+          "cleaning_paused_pet_using": "Limpieza en pausa - Mascota usando",
+          "cleaning_paused_system_error": "Limpieza en pausa - Error del sistema",
+          "dumping": "Vaciando",
+          "dumping_paused": "Vaciado en pausa",
+          "dumping_paused_cover": "Vaciado en pausa - Cubierta",
+          "dumping_paused_pet_approach": "Vaciado en pausa - Acercamiento de mascota",
+          "dumping_paused_pet_entered": "Vaciado en pausa - Mascota entr\u00f3",
+          "dumping_paused_pet_using": "Vaciado en pausa - Mascota usando",
+          "dumping_paused_system_error": "Vaciado en pausa - Error del sistema",
+          "idle": "Inactivo",
+          "leveling": "Nivelando",
+          "maintenance": "Mantenimiento",
+          "maintenance_paused": "Mantenimiento en pausa",
+          "maintenance_paused_cover": "Mantenimiento en pausa - Cubierta",
+          "maintenance_paused_pet_approach": "Mantenimiento en pausa - Acercamiento de mascota",
+          "maintenance_paused_pet_entered": "Mantenimiento en pausa - Mascota entr\u00f3",
+          "maintenance_paused_pet_using": "Mantenimiento en pausa - Mascota usando",
+          "maintenance_paused_system_error": "Mantenimiento en pausa - Error del sistema",
+          "paused": "Pausado",
+          "paused_cover": "Pausado - Cubierta",
+          "paused_pet_approach": "Pausado - Acercamiento de mascota",
+          "paused_pet_entered": "Pausado - Mascota entr\u00f3",
+          "paused_pet_using": "Pausado - Mascota usando",
+          "paused_system_error": "Pausado - Error del sistema",
+          "resetting": "Restableciendo",
+          "resetting_device": "Restableciendo dispositivo",
+          "unknown": "Desconocido"
+        }
+      },
+      "litter_weight": {
+        "name": "Peso de la arena"
+      },
+      "manual_dispensed": {
+        "name": "Dispensado manualmente"
+      },
+      "manual_dispensed_hopper_1": {
+        "name": "Dispensado manual Hopper 1"
+      },
+      "manual_dispensed_hopper_2": {
+        "name": "Dispensado manual Hopper 2"
+      },
+      "package_used": {
+        "name": "Paquete usado"
+      },
+      "pet_last_device_used": {
+        "name": "\u00daltima arena usada"
+      },
+      "pet_last_use_date": {
+        "name": "\u00daltima fecha de uso"
+      },
+      "pet_last_use_duration": {
+        "name": "Duraci\u00f3n del \u00faltimo uso"
+      },
+      "pet_last_weight_measurement": {
+        "name": "\u00daltima medici\u00f3n de peso"
+      },
+      "planned_dispensed": {
+        "name": "Dispensado planificado"
+      },
+      "planned_dispensed_hopper_1": {
+        "name": "Dispensado planificado Hopper 1"
+      },
+      "planned_dispensed_hopper_2": {
+        "name": "Dispensado planificado Hopper 2"
+      },
+      "purified_water": {
+        "name": "Agua purificada"
+      },
+      "raw_distribution_data": {
+        "name": "Datos de distribuci\u00f3n RAW"
+      },
+      "rssi": {
+        "name": "RSSI"
+      },
+      "spray_deodorant_liquid": {
+        "name": "L\u00edquido de desodorizante en spray"
+      },
+      "times_dispensed": {
+        "name": "Veces dispensado"
+      },
+      "times_eaten": {
+        "name": "Veces comido"
+      },
+      "times_used": {
+        "name": "Veces usado"
+      },
+      "total_dispensed": {
+        "name": "Total dispensado"
+      },
+      "total_dispensed_hopper_1": {
+        "name": "Total dispensado Hopper 1"
+      },
+      "total_dispensed_hopper_2": {
+        "name": "Total dispensado Hopper 2"
+      },
+      "total_package": {
+        "name": "Paquete total"
+      },
+      "total_planned": {
+        "name": "Total planificado"
+      },
+      "total_planned_hopper_1": {
+        "name": "Total planificado Hopper 1"
+      },
+      "total_planned_hopper_2": {
+        "name": "Total planificado Hopper 2"
+      },
+      "total_time": {
+        "name": "Uso total"
+      }
+    },
+    "switch": {
+      "auto_clean": {
+        "name": "Limpieza autom\u00e1tica"
+      },
+      "auto_odor": {
+        "name": "Desodorizaci\u00f3n autom\u00e1tica"
+      },
+      "avoid_repeat": {
+        "name": "Evitar repetici\u00f3n"
+      },
+      "camera": {
+        "name": "C\u00e1mara"
+      },
+      "child_lock": {
+        "name": "Bloqueo infantil"
+      },
+      "cont_rotation": {
+        "name": "Rotaci\u00f3n continua"
+      },
+      "deep_cleaning": {
+        "name": "Limpieza profunda"
+      },
+      "deep_deodor": {
+        "name": "Desodorizaci\u00f3n profunda"
+      },
+      "desiccant_notif": {
+        "name": "Notificaci\u00f3n sobre cambio de desecante"
+      },
+      "dispensing_notif": {
+        "name": "Notificaci\u00f3n sobre dispensado"
+      },
+      "display": {
+        "name": "Pantalla"
+      },
+      "do_not_disturb": {
+        "name": "No molestar"
+      },
+      "feed_sound": {
+        "name": "Sonido de alimentaci\u00f3n"
+      },
+      "feed_tone": {
+        "name": "Tono de alimentaci\u00f3n"
+      },
+      "highlight": {
+        "name": "Resaltar seguimiento de mascotas"
+      },
+      "indicator_light": {
+        "name": "Luz indicadora"
+      },
+      "kitten_mode": {
+        "name": "Modo gatito"
+      },
+      "light_weight": {
+        "name": "Peso ligero"
+      },
+      "low_battery_notif": {
+        "name": "Notificaci\u00f3n sobre bater\u00eda baja"
+      },
+      "microphone": {
+        "name": "Micr\u00f3fono"
+      },
+      "move_notif": {
+        "name": "Notificaci\u00f3n sobre movimiento"
+      },
+      "night_vision": {
+        "name": "Visi\u00f3n nocturna"
+      },
+      "periodic_cleaning": {
+        "name": "Limpieza peri\u00f3dica"
+      },
+      "periodic_odor": {
+        "name": "Desodorizaci\u00f3n peri\u00f3dica"
+      },
+      "pet_eat_notif": {
+        "name": "Notificaci\u00f3n sobre comida de la mascota"
+      },
+      "pet_tracking": {
+        "name": "Seguimiento de mascotas"
+      },
+      "pet_visit_notif": {
+        "name": "Notificaci\u00f3n sobre visita de mascota"
+      },
+      "power": {
+        "name": "Energ\u00eda"
+      },
+      "refill_notif": {
+        "name": "Notificaci\u00f3n sobre necesidad de recarga"
+      },
+      "shortage_alarm": {
+        "name": "Alarma de escasez"
+      },
+      "surplus_control": {
+        "name": "Control de excedentes"
+      },
+      "system_notification": {
+        "name": "Sonido del sistema"
+      },
+      "video_timestamp": {
+        "name": "Mostrar marca de tiempo"
+      },
+      "voice_dispense": {
+        "name": "Dispensado por voz"
+      },
+      "waste_covering": {
+        "name": "Cobertura de desechos"
+      }
+    },
+    "text": {
+      "manual_feed_dual_h1": {
+        "name": "Alimentaci\u00f3n manual Hopper 1"
+      },
+      "manual_feed_dual_h2": {
+        "name": "Alimentaci\u00f3n manual Hopper 2"
+      },
+      "manual_feed_single": {
+        "name": "Alimentaci\u00f3n manual"
+      }
+    }
+  }
+}

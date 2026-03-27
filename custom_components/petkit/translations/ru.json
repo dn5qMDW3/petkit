@@ -1,0 +1,645 @@
+{
+  "config": {
+    "error": {
+      "account_exists": "Этот аккаунт уже существует.",
+      "connection": "Невозможно подключиться к серверу.",
+      "unknown": "Произошла непредвиденная ошибка, проверьте логи."
+    },
+    "step": {
+      "user": {
+        "data": {
+          "password": "Пароль",
+          "region": "Регион",
+          "time_zone": "Часовой пояс",
+          "username": "Логин/ID"
+        },
+        "data_description": {
+          "region": "Это поле заполнено автоматически на основе конфигурации Home Assistant. Если нужен другой регион, выберите его из списка.",
+          "time_zone": "Это поле заполнено автоматически на основе конфигурации Home Assistant. Если нужен другой часовой пояс, выберите его из списка.",
+          "username": "Введите электронную почту (или ID, если Вы из Китая)"
+        },
+        "description": "Пожалуйста, введите данные от Вашего аккаунта PetKit."
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "battery": {
+        "name": "Батарейка"
+      },
+      "battery_installed": {
+        "name": "Батарейка установлена"
+      },
+      "camera_status": {
+        "name": "Статус камеры"
+      },
+      "care_plus_subscription": {
+        "name": "Подписка Care+"
+      },
+      "deodorizer": {
+        "name": "Дезодоратор"
+      },
+      "eating": {
+        "name": "Поедание корма"
+      },
+      "feeding": {
+        "name": "Кормление"
+      },
+      "food_level": {
+        "name": "Уровень корма"
+      },
+      "food_level_1": {
+        "name": "Уровень корма в отсек 1"
+      },
+      "food_level_2": {
+        "name": "Уровень корма в отсек 2"
+      },
+      "frequent_use": {
+        "name": "Распознавание частого использования"
+      },
+      "lack_warning": {
+        "name": "Предупреждение о низком уровне воды"
+      },
+      "liquid_empty": {
+        "name": "Предупреждение об окончании дезодорирующей жидкости"
+      },
+      "liquid_lack": {
+        "name": "Предупреждение о нехватке дезодорирующей жидкости"
+      },
+      "litter": {
+        "name": "Наполнитель"
+      },
+      "low_battery": {
+        "name": "Низкий заряд батареи"
+      },
+      "low_power": {
+        "name": "Нехватка энергии"
+      },
+      "manually_paused": {
+        "name": "Приостановлено принудительно"
+      },
+      "on_ac_power": {
+        "name": "Питание через сеть"
+      },
+      "pura_air_liquid": {
+        "name": "Жидкость Pura Air"
+      },
+      "replace_filter": {
+        "name": "Замена фильтра"
+      },
+      "sand_lack": {
+        "name": "Низкий уровень наполнителя"
+      },
+      "toilet_occupied": {
+        "name": "Лоток занят"
+      },
+      "waste_bin": {
+        "name": "Корзина для отходов переполнена"
+      },
+      "waste_bin_presence": {
+        "name": "Корзина для отходов установлена"
+      },
+      "water_level": {
+        "name": "Уровень воды"
+      }
+    },
+    "button": {
+      "action_continue": {
+        "name": "Действие : Продолжить"
+      },
+      "action_pause": {
+        "name": "Действие : Приостановить"
+      },
+      "action_reset": {
+        "name": "Действие : Сброс"
+      },
+      "call_pet": {
+        "name": "Подозвать питомца"
+      },
+      "cancel_manual_feed": {
+        "name": "Отменить принудительное кормление"
+      },
+      "deodorize": {
+        "name": "Включить освежитель"
+      },
+      "dump_litter": {
+        "name": "Очистить от наполнителя"
+      },
+      "exit_maintenance": {
+        "name": "Обслуживание : Завершить"
+      },
+      "food_replenished": {
+        "name": "Корм пополнен"
+      },
+      "reset_desiccant": {
+        "name": "Сбросить осушитель"
+      },
+      "reset_odor_eliminator": {
+        "name": "Сбросить устранитель запаха"
+      },
+      "start_maintenance": {
+        "name": "Обслуживание : Начать"
+      },
+      "start_scoop": {
+        "name": "Убрать отходы"
+      }
+    },
+    "fan": {
+      "air_purifier_fan": {
+        "name": "Очиститель воздуха"
+      }
+    },
+    "image": {
+      "last_eat_event": {
+        "name": "Последнее поедание корма"
+      },
+      "last_feed_event": {
+        "name": "Последнее кормление"
+      },
+      "last_toileting_event": {
+        "name": "Последнее использование лотка"
+      },
+      "last_visit_event": {
+        "name": "Последнее посещение"
+      }
+    },
+    "number": {
+      "cleaning_delay": {
+        "name": "Задержка уборки"
+      },
+      "manual_feed": {
+        "name": "Принудительное кормление"
+      },
+      "min_eating_duration": {
+        "name": "Минимальная длительность поедания корма"
+      },
+      "surplus": {
+        "name": "Излишки"
+      },
+      "volume": {
+        "name": "Громкость"
+      }
+    },
+    "select": {
+      "avoid_repeat_cleaning_interval": {
+        "name": "Избегать повторную очистку"
+      },
+      "eat_detection_sensitivity": {
+        "name": "Чувствительность ИИ для обнаружения поедания корма"
+      },
+      "litter_type": {
+        "name": "Тип наполнителя"
+      },
+      "move_detection_sensitivity": {
+        "name": "Чувствительность обнаружения движения"
+      },
+      "pet_detection_sensitivity": {
+        "name": "Чувствительность ИИ для распознавания питомцев"
+      },
+      "surplus_level": {
+        "name": "Уровень контроля излишков"
+      }
+    },
+    "sensor": {
+      "air_purified": {
+        "name": "Воздух очищен"
+      },
+      "amount_eaten": {
+        "name": "Количество съеденного корма"
+      },
+      "average_time": {
+        "name": "Среднее количество использолваний"
+      },
+      "avg_eating_time": {
+        "name": "Среднее время поедания корма"
+      },
+      "battery_level": {
+        "name": "Уровень заряда батареи"
+      },
+      "deodorant_left_days": {
+        "name": "Срок замены дезодоратора"
+      },
+      "deodorizer_level": {
+        "name": "Уровень дезодоратора"
+      },
+      "desiccant_left_days": {
+        "name": "Срок замены осушителя"
+      },
+      "device_status": {
+        "name": "Статус устройства"
+      },
+      "drink_times": {
+        "name": "Количество раз питья"
+      },
+      "end_date_care_plus_subscription": {
+        "name": "Срок окончания подписки Care+"
+      },
+      "error": {
+        "name": "Ошибка"
+      },
+      "error_message": {
+        "name": "Ошибка",
+        "state": {
+          "no_error": "Ошибок нет"
+        }
+      },
+      "feeder_error": {
+        "name": "Ошибка кормушки"
+      },
+      "filter_percent": {
+        "name": "Остаток фильтра"
+      },
+      "food_bowl_percentage": {
+        "name": "Уровень корма в миске"
+      },
+      "food_in_bowl": {
+        "name": "Наличие корма в миске"
+      },
+      "food_left": {
+        "name": "Осталось корма"
+      },
+      "last_connection": {
+        "name": "Последнее подключение через BLE"
+      },
+      "last_update": {
+        "name": "Последнее обновление"
+      },
+      "last_used_by": {
+        "name": "Последнее использование"
+      },
+      "litter_last_event": {
+        "name": "Последнее событие",
+        "state": {
+          "auto_cleaning_canceled": "Автоматическая очистка отменена",
+          "auto_cleaning_canceled_kitten": "Автоматическая очистка отменена: режим котёнка",
+          "auto_cleaning_completed": "Автоматическая очистка завершена",
+          "auto_cleaning_failed_full": "Ошибка автоматической очистки: контейнер переполнен",
+          "auto_cleaning_failed_hall_l": "Ошибка автоматической очистки: hall L",
+          "auto_cleaning_failed_hall_t": "Ошибка автоматической очистки: hall T",
+          "auto_cleaning_terminated": "Автоматическая очистка прервана",
+          "auto_odor_failed": "Автоматическая дезодорация завершена",
+          "clean_over": "Очистка завершена",
+          "deodorant_finished": "Дезодорация завершена",
+          "deodorant_finished_liquid_lack": "Дезодорация завершена: низкий уровень жидкости",
+          "light_over": "Свет",
+          "litter_empty_completed": "Очистка от наполнителя завершена",
+          "litter_empty_failed_full": "Ошибка очистки от наполнителя: контейнер переполнен",
+          "litter_empty_failed_hall_l": "Ошибка очистки от наполнителя: hall L",
+          "litter_empty_failed_hall_t": "Ошибка очистки от наполнителя: hall T",
+          "litter_empty_terminated": "Очистка от наполнителя прервана",
+          "manual_cleaning_canceled": "Принудительная очистка отменена",
+          "manual_cleaning_completed": "Принудительная очистка выполнена",
+          "manual_cleaning_failed_full": "Ошибка принудительной очистки: контейнер переполнен",
+          "manual_cleaning_failed_hall_l": "Ошибка принудительной очистки: hall L",
+          "manual_cleaning_failed_hall_t": "Ошибка принудительной очистки: hall T",
+          "manual_cleaning_terminated": "Принудительная очистка прервана",
+          "manual_odor_completed": "Принудительная дезодорация завершена",
+          "manual_odor_completed_liquid_lack": "Принудительная дезодорация завершена: низкий уровень жидкости",
+          "manual_odor_failed": "Ошибка принудительной дезодорации",
+          "periodic_cleaning_canceled": "Периодическая очистка отменена",
+          "periodic_cleaning_canceled_kitten": "Периодическая очистка отменена: режим котёнка",
+          "periodic_cleaning_completed": "Периодическая очистка завершена",
+          "periodic_cleaning_terminated": "Периодическая очистка прервана",
+          "periodic_odor_completed": "Периодическая дезодорация завершена",
+          "periodic_odor_completed_liquid_lack": "Периодическая дезодорация завершена: низкий уровень жидкости",
+          "periodic_odor_failed": "Ошибка периодической дезодорации",
+          "pet_detect": "Питомец обнаружен",
+          "pet_out": "Питомец покинул",
+          "reset_completed": "Сброс завершен",
+          "reset_failed_full": "Ошибка сброса: контейнер переполнен",
+          "reset_failed_hall_l": "Ошибка сброса: hall L",
+          "reset_failed_hall_t": "Ошибка сброса: hall T",
+          "reset_over": "Сброс",
+          "reset_terminated": "Сброс прерван",
+          "scheduled_cleaning_failed_full": "Ошибка запланированной очистки: контейнер переполнен",
+          "scheduled_cleaning_failed_hall_l": "Ошибка запланированной очистки: hall L",
+          "scheduled_cleaning_failed_hall_t": "Ошибка запланированной очистки: hall T",
+          "spray_over": "Дезодорация"
+        }
+      },
+      "litter_level": {
+        "name": "Выравнять наполнитель"
+      },
+      "litter_state": {
+        "name": "Состояние",
+        "state": {
+          "calibrating": "Калибровка",
+          "cleaning": "Очистка",
+          "cleaning_paused": "Очистка приостановлена",
+          "cleaning_paused_cover": "Очистка приостановлена - Крышка не закрыта",
+          "cleaning_paused_pet_approach": "Очистка приостановлена - Питомец поблизости",
+          "cleaning_paused_pet_entered": "Очистка приостановлена - Питомец внутри",
+          "cleaning_paused_pet_using": "Очистка приостановлена - Питомец использует",
+          "cleaning_paused_system_error": "Очистка приостановлена - Системная ошибка",
+          "dumping": "Очистка от наполнителя",
+          "dumping_paused":"Очистка от наполнителя приостановлена",
+          "dumping_paused_cover": "Очистка от наполнителя приостановлена - Крышка не закрыта",
+          "dumping_paused_pet_approach": "Очистка от наполнителя приостановлена - Питомец поблизости",
+          "dumping_paused_pet_entered": "Очистка от наполнителя приостановлена - Питомец внутри",
+          "dumping_paused_pet_using": "Очистка от наполнителя приостановлена - Питомец использует",
+          "dumping_paused_system_error": "Очистка от наполнителя приостановлена - Системная ошибка",
+          "idle": "Ожидание",
+          "leveling": "Выравнивание наполнителя",
+          "maintenance": "Обслуживание",
+          "maintenance_paused": "Обслуживание приостановлено",
+          "maintenance_paused_cover": "Обслуживание приостановлено - Крышка не закрыта",
+          "maintenance_paused_pet_approach": "Обслуживание приостановлено - Питомец поблизости",
+          "maintenance_paused_pet_entered": "Обслуживание приостановлено - Питомец внутри",
+          "maintenance_paused_pet_using": "Обслуживание приостановлено - Питомец использует",
+          "maintenance_paused_system_error": "Обслуживание приостановлено - Системная ошибка",
+          "paused": "Приостановлено",
+          "paused_cover": "Приостановлено - Крышка не закрыта",
+          "paused_pet_approach": "Приостановлено - Питомец поблизости",
+          "paused_pet_entered": "Приостановлено - Питомец внутри",
+          "paused_pet_using": "Приостановлено - Питомец использует",
+          "paused_system_error": "Приостановлено - Системная ошибка",
+          "resetting": "Сброс",
+          "resetting_device": "Сброс устройства",
+          "unknown": "Неизвестно"
+        }
+      },
+      "litter_weight": {
+        "name": "Масса нополнителя"
+      },
+      "manual_dispensed": {
+        "name": "Принудительное кормление"
+      },
+      "manual_dispensed_hopper_1": {
+        "name": "Принудительное кормление отсек 1"
+      },
+      "manual_dispensed_hopper_2": {
+        "name": "Принудительное кормление отсек 2"
+      },
+      "package_used": {
+        "name": "Упоковки использовано"
+      },
+      "pet_last_device_used": {
+        "name": "Последнее использование лотка"
+      },
+      "pet_last_use_date": {
+        "name": "Дата последнего использования"
+      },
+      "pet_last_use_duration": {
+        "name": "Продолжительность последнего использования"
+      },
+      "pet_last_weight_measurement": {
+        "name": "Последнее взвешивание"
+      },
+      "planned_dispensed": {
+        "name": "Плановое кормление"
+      },
+      "planned_dispensed_hopper_1": {
+        "name": "Плановое кормление отсек 1"
+      },
+      "planned_dispensed_hopper_2": {
+        "name": "Плановое кормление отсек 2"
+      },
+      "purified_water": {
+        "name": "Очищено воды"
+      },
+      "purifier_liquid": {
+        "name": "Уровень очищающей жидкости"
+      },
+      "raw_distribution_data": {
+        "name": "Данные о кормлении"
+      },
+      "rssi": {
+        "name": "Мощность сигнала"
+      },
+      "smart_spray_battery": {
+        "name": "Заряд дезодоратора"
+      },
+      "spray_deodorant_liquid": {
+        "name": "Уровень жидкости дезодоратора"
+      },
+      "times_dispensed": {
+        "name": "Количество кормлений"
+      },
+      "times_eaten": {
+        "name": "Количество поеданий корма"
+      },
+      "times_used": {
+        "name": "Количество использований"
+      },
+      "total_dispensed": {
+        "name": "Всего корма выдано"
+      },
+      "total_dispensed_hopper_1": {
+        "name": "Всего корма выдано отсек 1"
+      },
+      "total_dispensed_hopper_2": {
+        "name": "Всего корма выдано отсек 2"
+      },
+      "total_package": {
+        "name": "Всего упаковок"
+      },
+      "total_planned": {
+        "name": "Всего плановых кормлений"
+      },
+      "total_planned_hopper_1": {
+        "name": "Всего плановых кормлений отсек 1"
+      },
+      "total_planned_hopper_2": {
+        "name": "Всего плановых кормлений отсек 2"
+      },
+      "total_time": {
+        "name": "Всего времени использования"
+      }
+    },
+    "switch": {
+      "auto_clean": {
+        "name": "Автоматическая очистка"
+      },
+      "auto_odor": {
+        "name": "Автоматическая дезодорация"
+      },
+      "avoid_repeat_clean": {
+        "name": "Избегать повторной очистки"
+      },
+      "camera": {
+        "name": "Камера"
+      },
+      "child_lock": {
+        "name": "Блокировка от детей"
+      },
+      "cont_rotation": {
+        "name": "Бесконечное вращение"
+      },
+      "deep_cleaning": {
+        "name": "Глубокая очистка"
+      },
+      "deep_deodor": {
+        "name": "Глубокая дезодорация"
+      },
+      "deodorant_notify": {
+        "name": "Уведомление о необходимости замены дезодоранта"
+      },
+      "desiccant_notif": {
+        "name": "Уведомление о необходимости замены осушителя"
+      },
+      "dispensing_notif": {
+        "name": "Уведомление о кормлении"
+      },
+      "display": {
+        "name": "Экран"
+      },
+      "do_not_disturb": {
+        "name": "Не беспокоить"
+      },
+      "feed_sound": {
+        "name": "Звук кормления"
+      },
+      "feed_tone": {
+        "name": "Мелодия кормления"
+      },
+      "highlight": {
+        "name": "Хайлайты отслеживания питомцев"
+      },
+      "indicator_light": {
+        "name": "Индикатор"
+      },
+      "kitten_mode": {
+        "name": "Режим котёнка"
+      },
+      "lack_liquid_notify": {
+        "name": "Уведомление о низком уровне очищающей жидкости"
+      },
+      "lack_sand_notify": {
+        "name": "Уведомление о низком уровне наполнителя"
+      },
+      "light": {
+        "name": "Подсветка"
+      },
+      "light_weight": {
+        "name": "Обнаружение низкого веса"
+      },
+      "litter_full_notify": {
+        "name": "Уведомление о переполненном контейнере"
+      },
+      "low_battery_notif": {
+        "name": "Уведомление о низком заряде батареи"
+      },
+      "microphone": {
+        "name": "Микрофон"
+      },
+      "move_notif": {
+        "name": "Уведомление о движении"
+      },
+      "night_vision": {
+        "name": "Ночное зрение"
+      },
+      "periodic_cleaning": {
+        "name": "Периодическая очистка"
+      },
+      "periodic_odor": {
+        "name": "Периодическая дезодорация"
+      },
+      "pet_eat_notif": {
+        "name": "Уведомление если питомец покушал"
+      },
+      "pet_in_notify": {
+        "name": "Уведомление об использовании"
+      },
+      "pet_tracking": {
+        "name": "Отслеживание питомцев"
+      },
+      "pet_visit_notif": {
+        "name": "Уведомление о визите питомца"
+      },
+      "power": {
+        "name": "Питание"
+      },
+      "refill_notif": {
+        "name": "Уведомление о необходимости пополнения"
+      },
+      "shortage_alarm": {
+        "name": "Сигнал при нехватке"
+      },
+      "surplus_control": {
+        "name": "Контроль излишков"
+      },
+      "system_notification": {
+        "name": "Системный звук"
+      },
+      "video_timestamp": {
+        "name": "Отображение времени на видео"
+      },
+      "voice_dispense": {
+        "name": "Голос кормления"
+      },
+      "waste_covering": {
+        "name": "Закрытие отходов"
+      },
+      "work_log_notify": {
+        "name": "Уведомление о периодических задачах"
+      },
+      "work_notify": {
+        "name": "Уведомление об очистке"
+      }
+    },
+    "light": {
+      "light": {
+        "name": "Подсветка"
+      }
+    },
+    "text": {
+      "manual_feed_dual_h1": {
+        "name": "Принудительное кормление отсек 1"
+      },
+      "manual_feed_dual_h2": {
+        "name": "Принудительное кормление отсек 2"
+      },
+      "manual_feed_single": {
+        "name": "Принудительное кормление"
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "region": "Регион",
+          "scan_interval": "Период опроса по умолчанию (секунды)",
+          "smart_polling": "Умный опрос",
+          "time_zone": "Часовой пояс"
+        },
+        "data_description": {
+          "smart_polling": "Умный опрос подстраиваетя под события/использование."
+        },
+        "sections": {
+          "bluetooth_options": {
+            "data": {
+              "ble_relay_enabled": "Включить Bluetooth реле",
+              "scan_interval_bluetooth": "Периодически связываться с устройствами через Bluetooth (Минуты)"
+            },
+            "data_description": {
+              "ble_relay_enabled": "Если выключено, состояние фонтана обновляется только при одключении через смартфон."
+            },
+            "description": "Эти настройки применимы, если используются устройства, подключаемые только через Bluetooth (напр., кормушка, лоток). Для большей информации, проверьте приложение.",
+            "name": "Настройки Bluetooth"
+          },
+          "medias_options": {
+            "data": {
+              "delete_media_after": "Удалять фото и видео через (дней)",
+              "media_dl_image": "Выгружать фото",
+              "media_dl_video": "Выгружать видео",
+              "media_ev_type": "Типы событий для загрузки",
+              "media_path": "Путь до места хранения",
+              "scan_interval_media": "Интервал проверки новых фото и видео (минут)"
+            },
+            "data_description": {
+              "delete_media_after": "Удалять фото и видео через опредленное количество. (0 = никогда)",
+              "media_dl_image": "Выгружать все фото, относящиеся к событиям ниже. (подписка Care+ НЕ требуется).",
+              "media_dl_video": "Выгружать все видео, относящиеся к событиям ниже. (требуется подписка Care+)",
+              "media_path": "Путь до папки, куда  будут выгружаться фото. По умолчанию, используется папка /media на сервере Home Assistant.",
+              "scan_interval_media": "Период проверки и загрузки фото и видео с серверов PetKit."
+            },
+            "description": "Эти настройки применимы, если используются устройства, которые оснащены камерой и могут записывать фото и видео",
+            "name": "Настройки фото и видео"
+          }
+        },
+        "title": "Настройки интеграции PetKit"
+      }
+    }
+  }
+}

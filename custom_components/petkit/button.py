@@ -1,0 +1,485 @@
+"""Switch platform for Petkit Smart Devices integration."""
+
+from __future__ import annotations
+
+import asyncio
+from collections.abc import Callable
+from dataclasses import dataclass
+from typing import TYPE_CHECKING
+
+from pypetkitapi import (
+    D3,
+    D4H,
+    D4S,
+    D4SH,
+    DEVICES_FEEDER,
+    DEVICES_LITTER_BOX,
+    DEVICES_WATER_FOUNTAIN,
+    LITTER_WITH_CAMERA,
+    T3,
+    T4,
+    T5,
+    T6,
+    T7,
+    DeviceAction,
+    DeviceCommand,
+    Feeder,
+    FeederCommand,
+    LBCommand,
+    Litter,
+    LitterCommand,
+    Pet,
+    Purifier,
+    WaterFountain,
+)
+from pypetkitapi.command import FountainAction
+
+from homeassistant.components.button import ButtonEntity, ButtonEntityDescription
+
+from .const import DOMAIN, LOGGER, POWER_ONLINE_STATE
+from .entity import PetKitDescSensorBase, PetkitEntity
+
+if TYPE_CHECKING:
+    from homeassistant.core import HomeAssistant
+    from homeassistant.helpers.entity_platform import AddEntitiesCallback
+
+    from .coordinator import PetkitDataUpdateCoordinator
+    from .data import PetkitConfigEntry, PetkitDevices
+
+
+@dataclass(frozen=True, kw_only=True)
+class PetKitButtonDesc(PetKitDescSensorBase, ButtonEntityDescription):
+    """A class that describes sensor entities."""
+
+    action: Callable[PetkitConfigEntry]
+    is_available: Callable[[PetkitDevices], bool] | None = None
+
+
+COMMON_ENTITIES = []
+
+BUTTON_MAPPING: dict[type[PetkitDevices], list[PetKitButtonDesc]] = {
+    Feeder: [
+        *COMMON_ENTITIES,
+        PetKitButtonDesc(
+            key="Reset desiccant",
+            translation_key="reset_desiccant",
+            action=lambda api, device: api.send_api_request(
+                device.id, FeederCommand.RESET_DESICCANT
+            ),
+            only_for_types=DEVICES_FEEDER,
+        ),
+        PetKitButtonDesc(
+            key="Cancel manual feed",
+            translation_key="cancel_manual_feed",
+            action=lambda api, device: api.send_api_request(
+                device.id, FeederCommand.CANCEL_MANUAL_FEED
+            ),
+            only_for_types=DEVICES_FEEDER,
+        ),
+        PetKitButtonDesc(
+            key="Call pet",
+            translation_key="call_pet",
+            action=lambda api, device: api.send_api_request(
+                device.id, FeederCommand.CALL_PET
+            ),
+            only_for_types=[D3],
+        ),
+        PetKitButtonDesc(
+            key="Food replenished",
+            translation_key="food_replenished",
+            action=lambda api, device: api.send_api_request(
+                device.id, FeederCommand.FOOD_REPLENISHED
+            ),
+            only_for_types=[D4S, D4H, D4SH],
+        ),
+        PetKitButtonDesc(
+            key="Play sound",
+            translation_key="play_sound",
+            action=lambda api, device: api.send_api_request(
+                device.id, FeederCommand.PLAY_SOUND, device.settings.selected_sound
+            ),
+            only_for_types=[D3, D4H, D4SH],
+        ),
+    ],
+    Litter: [
+        *COMMON_ENTITIES,
+        PetKitButtonDesc(
+            key="Scoop",
+            translation_key="start_scoop",
+            action=lambda api, device: api.send_api_request(
+                device.id,
+                DeviceCommand.CONTROL_DEVICE,
+                {DeviceAction.START: LBCommand.CLEANING},
+            ),
+            only_for_types=DEVICES_LITTER_BOX,
+            is_available=lambda device: device.state.work_state is None,
+        ),
+        PetKitButtonDesc(
+            key="Maintenance mode",
+            translation_key="start_maintenance",
+            action=lambda api, device: api.send_api_request(
+                device.id,
+                DeviceCommand.CONTROL_DEVICE,
+                {DeviceAction.START: LBCommand.MAINTENANCE},
+            ),
+            only_for_types=[T4, T5],
+            is_available=lambda device: device.state.work_state is None,
+        ),
+        PetKitButtonDesc(
+            key="Exit maintenance mode",
+            translation_key="exit_maintenance",
+            action=lambda api, device: api.send_api_request(
+                device.id,
+                DeviceCommand.CONTROL_DEVICE,
+                {DeviceAction.END: LBCommand.MAINTENANCE},
+            ),
+            only_for_types=[T4, T5],
+            is_available=lambda device: device.state.work_state is not None
+            and device.state.work_state.work_mode == 9,
+        ),
+        PetKitButtonDesc(
+            key="Dump litter",
+            translation_key="dump_litter",
+            action=lambda api, device: api.send_api_request(
+                device.id,
+                DeviceCommand.CONTROL_DEVICE,
+                {DeviceAction.START: LBCommand.DUMPING},
+            ),
+            only_for_types=DEVICES_LITTER_BOX,
+            ignore_types=[T7],  # T7 does not support Dumping
+            is_available=lambda device: device.state.work_state is None,
+        ),
+        PetKitButtonDesc(
+            key="Pause",
+            translation_key="action_pause",
+            action=lambda api, device: api.send_api_request(
+                device.id,
+                DeviceCommand.CONTROL_DEVICE,
+                {
+                    DeviceAction.STOP: api.petkit_entities[
+                        device.id
+                    ].state.work_state.work_mode
+                },
+            ),
+            only_for_types=DEVICES_LITTER_BOX,
+            is_available=lambda device: device.state.work_state is not None,
+        ),
+        PetKitButtonDesc(
+            key="Continue",
+            translation_key="action_continue",
+            action=lambda api, device: api.send_api_request(
+                device.id,
+                DeviceCommand.CONTROL_DEVICE,
+                {
+                    DeviceAction.CONTINUE: api.petkit_entities[
+                        device.id
+                    ].state.work_state.work_mode
+                },
+            ),
+            only_for_types=DEVICES_LITTER_BOX,
+            is_available=lambda device: device.state.work_state is not None,
+        ),
+        PetKitButtonDesc(
+            key="Reset",
+            translation_key="action_reset",
+            action=lambda api, device: api.send_api_request(
+                device.id,
+                DeviceCommand.CONTROL_DEVICE,
+                {
+                    DeviceAction.END: api.petkit_entities[
+                        device.id
+                    ].state.work_state.work_mode
+                },
+            ),
+            only_for_types=DEVICES_LITTER_BOX,
+            is_available=lambda device: device.state.work_state is not None,
+        ),
+        PetKitButtonDesc(
+            # For T3/T4 only
+            key="Deodorize T3 T4",
+            translation_key="deodorize",
+            action=lambda api, device: api.send_api_request(
+                device.id,
+                DeviceCommand.CONTROL_DEVICE,
+                {DeviceAction.START: LBCommand.ODOR_REMOVAL},
+            ),
+            only_for_types=[T3, T4],
+            value=lambda device: device.k3_device,
+        ),
+        PetKitButtonDesc(
+            # For T5 / T7 only using the N60 deodorizer
+            key="Deodorize T5 T7",
+            translation_key="deodorize",
+            action=lambda api, device: api.send_api_request(
+                device.id,
+                DeviceCommand.CONTROL_DEVICE,
+                {DeviceAction.START: LBCommand.ODOR_REMOVAL},
+            ),
+            only_for_types=[T5, T7],
+            force_add=[T5, T7],
+            is_available=lambda device: device.state.refresh_state is None,
+        ),
+        PetKitButtonDesc(
+            key="Reset N50 odor eliminator",
+            translation_key="reset_n50_odor_eliminator",
+            action=lambda api, device: api.send_api_request(
+                device.id, LitterCommand.RESET_N50_DEODORIZER
+            ),
+            only_for_types=DEVICES_LITTER_BOX,
+            ignore_types=[T7],
+        ),
+        PetKitButtonDesc(
+            key="Reset N60 odor eliminator",
+            translation_key="reset_n60_odor_eliminator",
+            action=lambda api, device: api.send_api_request(
+                device.id,
+                DeviceCommand.CONTROL_DEVICE,
+                {DeviceAction.START: LBCommand.RESET_N60_DEODOR},
+            ),
+            only_for_types=LITTER_WITH_CAMERA,
+        ),
+        PetKitButtonDesc(
+            key="Level litter",
+            translation_key="level_litter",
+            action=lambda api, device: api.send_api_request(
+                device.id,
+                DeviceCommand.CONTROL_DEVICE,
+                {DeviceAction.START: LBCommand.LEVELING},
+            ),
+            is_available=lambda device: device.state.work_state is None,
+        ),
+    ],
+    WaterFountain: [
+        *COMMON_ENTITIES,
+        PetKitButtonDesc(
+            key="Reset filter",
+            translation_key="reset_filter",
+            action=lambda api, device: api.bluetooth_manager.send_ble_command(
+                device.id, FountainAction.RESET_FILTER
+            ),
+            only_for_types=DEVICES_WATER_FOUNTAIN,
+        ),
+        PetKitButtonDesc(
+            key="Pause",
+            translation_key="pause",
+            action=lambda api, device: api.bluetooth_manager.send_ble_command(
+                device.id, FountainAction.PAUSE
+            ),
+            only_for_types=DEVICES_WATER_FOUNTAIN,
+            is_available=lambda device: (
+                device.status
+                and device.status.run_status is not None
+                and device.status.run_status > 0
+                and device.status.power_status == 1
+            ),
+        ),
+        PetKitButtonDesc(
+            key="Resume",
+            translation_key="resume",
+            action=lambda api, device: api.bluetooth_manager.send_ble_command(
+                device.id, FountainAction.CONTINUE
+            ),
+            only_for_types=DEVICES_WATER_FOUNTAIN,
+            is_available=lambda device: (
+                device.status
+                and device.status.run_status is not None
+                and device.status.run_status == 0
+                and device.status.power_status == 1
+            ),
+        ),
+    ],
+    Purifier: [*COMMON_ENTITIES],
+    Pet: [*COMMON_ENTITIES],
+}
+
+
+@dataclass(frozen=True, kw_only=True)
+class PetKitPtzButtonDesc(PetKitDescSensorBase, ButtonEntityDescription):
+    """Description for a PTZ button entity."""
+
+    ptz_type: int = 0
+    ptz_dir: int = 0
+
+
+PTZ_BUTTONS: list[PetKitPtzButtonDesc] = [
+    PetKitPtzButtonDesc(
+        key="ptz_left",
+        translation_key="ptz_left",
+        ptz_type=1,
+        ptz_dir=-1,
+        only_for_types=[T6],
+    ),
+    PetKitPtzButtonDesc(
+        key="ptz_right",
+        translation_key="ptz_right",
+        ptz_type=1,
+        ptz_dir=1,
+        only_for_types=[T6],
+    ),
+    PetKitPtzButtonDesc(
+        key="ptz_stop",
+        translation_key="ptz_stop",
+        ptz_type=1,
+        ptz_dir=0,
+        only_for_types=[T6],
+    ),
+    PetKitPtzButtonDesc(
+        key="ptz_flip",
+        translation_key="ptz_flip",
+        ptz_type=2,
+        ptz_dir=0,
+        only_for_types=[T6],
+    ),
+]
+
+
+async def async_setup_entry(
+    hass: HomeAssistant,
+    entry: PetkitConfigEntry,
+    async_add_entities: AddEntitiesCallback,
+) -> None:
+    """Set up binary_sensors using config entry."""
+    devices = entry.runtime_data.client.petkit_entities.values()
+    entities: list[ButtonEntity] = [
+        PetkitButton(
+            coordinator=entry.runtime_data.coordinator,
+            entity_description=entity_description,
+            device=device,
+        )
+        for device in devices
+        for device_type, entity_descriptions in BUTTON_MAPPING.items()
+        if isinstance(device, device_type)
+        for entity_description in entity_descriptions
+        if entity_description.is_supported(device)
+    ]
+
+    # Add PTZ buttons for camera devices that support it (T6).
+    entities.extend(
+        PetkitPtzButton(
+            hass=hass,
+            coordinator=entry.runtime_data.coordinator,
+            entity_description=desc,
+            device=device,
+        )
+        for device in devices
+        if isinstance(device, Litter)
+        for desc in PTZ_BUTTONS
+        if desc.is_supported(device)
+    )
+
+    LOGGER.debug(
+        "BUTTON : Adding %s (on %s available)",
+        len(entities),
+        sum(len(descriptors) for descriptors in BUTTON_MAPPING.values())
+        + len(PTZ_BUTTONS),
+    )
+    async_add_entities(entities)
+
+
+class PetkitButton(PetkitEntity, ButtonEntity):
+    """Petkit Smart Devices Button class."""
+
+    entity_description: PetKitButtonDesc
+
+    def __init__(
+        self,
+        coordinator: PetkitDataUpdateCoordinator,
+        entity_description: PetKitButtonDesc,
+        device: Feeder | Litter | WaterFountain,
+    ) -> None:
+        """Initialize the switch class."""
+        super().__init__(coordinator, device)
+        self.coordinator = coordinator
+        self.entity_description = entity_description
+        self.device = device
+
+    @property
+    def available(self) -> bool:
+        """Only make available if device is online."""
+
+        device_data = self.coordinator.data.get(self.device.id)
+        if (
+            device_data is not None
+            and hasattr(device_data, "state")
+            and hasattr(device_data.state, "pim")
+            and device_data.state.pim not in POWER_ONLINE_STATE
+        ):
+            return False
+
+        if self.entity_description.is_available:
+            is_available = self.entity_description.is_available(device_data)
+            LOGGER.debug(
+                "Button %s availability result is: %s",
+                self.entity_description.key,
+                is_available,
+            )
+            return is_available
+
+        return True
+
+    async def async_press(self) -> None:
+        """Handle the button press."""
+        LOGGER.debug("Button pressed: %s", self.entity_description.key)
+        self.coordinator.enable_smart_polling(3)
+        await self.entity_description.action(
+            self.coordinator.config_entry.runtime_data.client, self.device
+        )
+        await asyncio.sleep(0.5)
+        await self.coordinator.async_request_refresh()
+
+
+class PetkitPtzButton(PetkitEntity, ButtonEntity):
+    """PTZ control button that sends commands via the camera's RTM session."""
+
+    entity_description: PetKitPtzButtonDesc
+
+    def __init__(
+        self,
+        hass: HomeAssistant,
+        coordinator: PetkitDataUpdateCoordinator,
+        entity_description: PetKitPtzButtonDesc,
+        device: Litter,
+    ) -> None:
+        """Initialize the PTZ button."""
+        super().__init__(coordinator, device)
+        self.hass = hass
+        self.coordinator = coordinator
+        self.entity_description = entity_description
+        self.device = device
+
+    @property
+    def available(self) -> bool:
+        """Available when the device is online and a camera RTM session exists."""
+        device_data = self.coordinator.data.get(self.device.id)
+        if (
+            device_data is not None
+            and hasattr(device_data, "state")
+            and hasattr(device_data.state, "pim")
+            and device_data.state.pim not in POWER_ONLINE_STATE
+        ):
+            return False
+        return True
+
+    async def async_press(self) -> None:
+        """Send PTZ command through the camera's RTM signaling."""
+        LOGGER.debug(
+            "PTZ button pressed: %s (type=%d dir=%d) for device %s",
+            self.entity_description.key,
+            self.entity_description.ptz_type,
+            self.entity_description.ptz_dir,
+            self.device.id,
+        )
+        cameras = self.hass.data.get(DOMAIN, {}).get("cameras", {})
+        camera = cameras.get(str(self.device.id))
+        if camera is None:
+            LOGGER.warning(
+                "PTZ button %s: no active camera entity for device %s",
+                self.entity_description.key,
+                self.device.id,
+            )
+            return
+
+        await camera.async_ptz_ctrl(
+            self.entity_description.ptz_type,
+            self.entity_description.ptz_dir,
+        )
