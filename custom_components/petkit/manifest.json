@@ -6,7 +6,6 @@
   "config_flow": true,
   "dependencies": ["http"],
   "documentation": "https://github.com/dn5qMDW3/petkit",
-  "homeassistant": "2025.1.0",
   "iot_class": "cloud_polling",
   "issue_tracker": "https://github.com/dn5qMDW3/petkit/issues",
   "loggers": ["petkit"],
