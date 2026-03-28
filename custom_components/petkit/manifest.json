@@ -10,7 +10,7 @@
   "issue_tracker": "https://github.com/dn5qMDW3/petkit/issues",
   "loggers": ["petkit"],
   "requirements": [
-    "pypetkitapi @ git+https://github.com/dn5qMDW3/py-petkit-api@main",
+    "pypetkitapi@git+https://github.com/dn5qMDW3/py-petkit-api@main",
     "aiofiles==24.1.0",
     "paho-mqtt==2.1.0",
     "websockets==15.0.1",
