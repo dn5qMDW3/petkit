@@ -140,12 +140,6 @@ class PetkitDataUpdateCoordinator(DataUpdateCoordinator):
             raise UpdateFailed(exception) from exception
         else:
             data = self.config_entry.runtime_data.client.petkit_entities
-            LOGGER.warning(
-                "PetKit coordinator update: got %d entities, keys=%s, types=%s",
-                len(data),
-                list(data.keys()),
-                [type(v).__name__ for v in data.values()],
-            )
             self.current_devices = set(data)
 
             # Check if there are any stale devices
