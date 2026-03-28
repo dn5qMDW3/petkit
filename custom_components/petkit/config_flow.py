@@ -257,28 +257,24 @@ class PetkitFlowHandler(ConfigFlow, domain=DOMAIN):
                     type=selector.TextSelectorType.PASSWORD,
                 ),
             ),
+            vol.Required(
+                CONF_REGION,
+                default=(user_input or {}).get(
+                    CONF_REGION,
+                    CODE_TO_COUNTRY_DICT.get(country_from_ha, country_from_ha),
+                ),
+            ): selector.SelectSelector(
+                selector.SelectSelectorConfig(
+                    options=sorted(CODE_TO_COUNTRY_DICT.values())
+                ),
+            ),
+            vol.Required(
+                CONF_TIME_ZONE,
+                default=(user_input or {}).get(CONF_TIME_ZONE, tz_from_ha),
+            ): selector.SelectSelector(
+                selector.SelectSelectorConfig(options=ALL_TIMEZONES_LST),
+            ),
         }
-
-        if _errors:
-            data_schema.update(
-                {
-                    vol.Required(
-                        CONF_REGION,
-                        default=CODE_TO_COUNTRY_DICT.get(
-                            country_from_ha, country_from_ha
-                        ),
-                    ): selector.SelectSelector(
-                        selector.SelectSelectorConfig(
-                            options=sorted(CODE_TO_COUNTRY_DICT.values())
-                        ),
-                    ),
-                    vol.Required(
-                        CONF_TIME_ZONE, default=tz_from_ha
-                    ): selector.SelectSelector(
-                        selector.SelectSelectorConfig(options=ALL_TIMEZONES_LST),
-                    ),
-                }
-            )
 
         return self.async_show_form(
             step_id="user",
